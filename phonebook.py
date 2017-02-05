@@ -1,9 +1,32 @@
+#!/usr/bin/python
+"""
+Adaugarea unei clase Contact pentru pastrarea contactelor.
+object - mostenirea din clasa obiect
+"""
+
+class Contact(object):
+        """
+        Functia care initializeaza obiectul Contact(constructor).
+        """
+        def __init__(self, nume=None, prenume=None, nrTel=None):
+                self.nume = nume
+                self.prenume = prenume
+                self.nrTel = nrTel
+
+        def __str__(self):
+                """
+                Functia string pt afisarea contactului
+                """
+                return "%s %s : %s" (self.nume, self.prenume, self.nrTel)
+
 # Define lists, dicts, functions etc.
 f = open('phonedata.txt', 'r')
 book = eval(f.readline())
 menu = ['A - Add a person/number', 'D - Delete a person/number', 'P - Print out phonebook']
-
-
+"""
+Adaugarea unei liste in care adaugam contactele
+"""
+contacte = []
 # Print functions
 def printNames(dic):
 	print "Names in book: "
@@ -24,7 +47,7 @@ def printMenu(list):
 def computeMenu(userInput):
 	if userInput == "a" or userInput == "d" or userInput == "p":
 		if userInput == "a":
-			addItem()
+			addItem1()
 		elif userInput == "d":
 			delItem()
 		else:
@@ -39,6 +62,21 @@ def addItem():
 	book[name] = number
 	print ""
 	printContent(book)
+"""
+Functia de adaugare a contactelor -vers 1
+"""
+def addItem1():
+        print 'Introduceti numele contactului: '
+        nume = raw_input()
+        print 'Introduceti prenumele contactului: '
+        prenume = raw_input()
+        print 'Introduceti numarul de telefon: '
+        nrTel = raw_input()
+        # Clasa Contact care creaza obiectul ce va fi adaugata in lista.
+        contact = Contact(nume, prenume, nrTel)
+        # Lista de contacte in care se adauga contactul.
+        contacte.append(contact)
+        
 
 def delItem():
 	name = raw_input("Name: ")
